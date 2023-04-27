@@ -1,0 +1,31 @@
+on: push
+
+jobs:
+ #--------------------------------------------------------------------------------------- 
+  run_functional_eds_tests_on_staging:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Zendy-OA-AutomationTest repo
+        uses: actions/checkout@v2
+        with:
+          repository: Knowledge-E/Zendy-OA-AutomationTest
+          ref: master
+          token: ${{secrets.GITHUB_TOKEN}} 
+      - name: Install dependencies
+        run: yarn
+      - name: Run functionalEDS test
+        run: yarn functionalEDS
+
+  run_functional_solr_tests_on_staging:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Zendy-OA-AutomationTest repo
+        uses: actions/checkout@v2
+        with:
+          repository: Knowledge-E/Zendy-OA-AutomationTest
+          ref: master
+          token: ${{secrets.GITHUB_TOKEN}} 
+      - name: Install dependencies
+        run: yarn
+      - name: Run yarn functionalSOLR test
+        run: yarn functionalSOLR
